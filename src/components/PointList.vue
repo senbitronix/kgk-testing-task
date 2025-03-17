@@ -18,12 +18,14 @@
     <div class="row items-center">
       <q-checkbox
         v-model="allPointsSelected"
-        label="Выбрать все"
         color="accent"
+        keep-color
         :disable="!filteredPoints.length"
         @update:model-value="toggleSelectAll"
-      />
-      &hairsp; ({{ filteredPoints.length }})
+      >
+        <div class="text-accent">Выбрать все</div>
+      </q-checkbox>
+      <span class="text-accent">({{ filteredPoints.length }})</span>
     </div>
 
     <div>
