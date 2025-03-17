@@ -57,6 +57,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .card__is-active {
   border: 1px solid $accent;
+
   .place {
     color: $accent;
   }
