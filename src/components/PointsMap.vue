@@ -25,32 +25,21 @@ const { currentPoint } = storeToRefs(pointStore);
 const getTooltipContent = (point: Point) => {
   return `
     <div class="tool-tip">
-      <div>
+      <div class="tool-tip__block">
         <img class="tool-tip__icon" src="map-marker-radius.svg" width="16" height="16"/>
         Точка №${point.id} (${point.code})
       </div>      
-      <div>
+      <div class="tool-tip__block">
         <img class="tool-tip__icon" src="map-marker.svg" width="16" height="16"/>
         ${point.address}
       </div>
-      <div>
+      <div class="tool-tip__block">
         <img class="tool-tip__icon" src="office-building.svg" width="16" height="16"/>
         ${point.company}
       </div>
     </div>
   `;
 };
-
-onMounted(() => {
-  leafletMap = new LeafletMap(mapId, tileLayerUrl, attribution);
-
-  leafletMap.initMap(
-    currentPoint.value?.x ?? initialLatitude,
-    currentPoint.value?.y ?? initialLongitude,
-    initialZoom,
-  );
-  leafletMap.updateMarkers(pointStore.filteredPoints, currentPoint, getTooltipContent);
-});
 
 watch([() => pointStore.filteredPoints, currentPoint], () => {
   if (leafletMap?.map) {
@@ -64,4 +53,24 @@ watch([() => pointStore.filteredPoints, currentPoint], () => {
     }
   }
 });
+
+onMounted(() => {
+  leafletMap = new LeafletMap(mapId, tileLayerUrl, attribution);
+
+  leafletMap.initMap(
+    currentPoint.value?.x ?? initialLatitude,
+    currentPoint.value?.y ?? initialLongitude,
+    initialZoom,
+  );
+  leafletMap.updateMarkers(pointStore.filteredPoints, currentPoint, getTooltipContent);
+});
 </script>
+
+<style lang="scss">
+.tool-tip__block {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1.8;
+}
+</style>
