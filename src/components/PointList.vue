@@ -33,6 +33,7 @@
       <q-btn icon="mdi-map-marker-radius" flat round color="accent" />
     </div>
   </div>
+  <!-- virtual starts here -->
   <q-list separator>
     <q-virtual-scroll ref="virtualScrollRef" :items="filteredPoints" style="height: 700px">
       <template v-slot="{ item }">
@@ -51,6 +52,20 @@
       </template>
     </q-virtual-scroll>
   </q-list>
+  <!-- <q-list bordered separator v-for="item of filteredPoints" :key="item.id">
+    <q-item clickable v-ripple>
+      <q-item-section>
+        <PointCard
+          class="point-card"
+          :point="item"
+          :isSelected="pointStore.isPointSelected(item.id)"
+          :isActive="currentPoint?.id === item.id"
+          @select="pointStore.togglePointSelection(item.id)"
+          @click="setCurrentPointToActive(item)"
+        />
+      </q-item-section>
+    </q-item>
+  </q-list> -->
 </template>
 
 <script setup lang="ts">

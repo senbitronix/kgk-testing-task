@@ -4,7 +4,7 @@ import type { Point } from 'src/models/point';
 import { generatePoints } from 'src/utils/generator';
 
 export const usePointStore = defineStore('point', () => {
-  const points = ref<Point[]>([...generatePoints(10000)]);
+  const points = ref<Point[]>([...generatePoints(5)]);
 
   const currentPoint = ref<Point | null>(
     points.value.length > 0 ? (points.value[0] ?? null) : null,

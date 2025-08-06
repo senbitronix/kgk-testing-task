@@ -28,7 +28,7 @@ const getTooltipContent = (point: Point) => {
       <div class="tool-tip__block">
         <img class="tool-tip__icon" src="map-marker-radius.svg" width="16" height="16"/>
         Точка №${point.id} (${point.code})
-      </div>      
+      </div>
       <div class="tool-tip__block">
         <img class="tool-tip__icon" src="map-marker.svg" width="16" height="16"/>
         ${point.address}
